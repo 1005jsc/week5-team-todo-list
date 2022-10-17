@@ -1,6 +1,6 @@
-import { __getTodos, __addTodos } from "../../redux/modules/todoSlice";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { __addTodos } from "../../redux/modules/todoSlice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Box, Label, Input, Button } from "../../common";
 
 const TodoForm = () => {

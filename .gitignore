@@ -11,6 +11,9 @@
 # production
 /build
 
+# prettier는 나만 쓴다
+.prettierrc
+
 # db.json
 /db.json
 

@@ -19,6 +19,30 @@ export const __getTodos = createAsyncThunk(
   }
 );
 
+export const __addTodos = createAsyncThunk(
+  "addTodos",
+  async (payload, thunkAPI) => {
+    try {
+      axios.post("http://localhost:3001/todos", payload);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __delTodos = createAsyncThunk(
+  "delTodos",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.delete(`http://localhost:3001/todos/${payload}`);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const __fixTodo = createAsyncThunk(
   "fixTodo",
   async (payload, thunkAPI) => {
@@ -28,18 +52,6 @@ export const __fixTodo = createAsyncThunk(
         { desc: payload.desc }
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-export const __addTodos = createAsyncThunk(
-  "addTodos",
-  async (payload, thunkAPI) => {
-    try {
-      axios.post("http://localhost:3001/todos", payload);
-      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -76,7 +88,20 @@ export const todosSlice = createSlice({
       state.error = action.payload;
     },
 
-    // Particular Todo Fix
+    // Todo Delete
+    [__delTodos.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__delTodos.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
+    [__delTodos.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    // Todo Fix
     [__fixTodo.pending]: (state) => {
       state.isLoading = true;
     },

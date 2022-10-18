@@ -1,8 +1,4 @@
 import styled from "styled-components";
-// import DetailBody from "../../components/todo_detail/DetailBody/DetailBody";
-// import DetailFixButton from "../../components/todo_detail/DetailFixButton";
-// import Comments from "../../components/todo_detail/DetailComments/Comments";
-// import DetailHeader from "../../components/todo_detail/DetailHeader/DetailHeader";
 import { Outlet } from "react-router-dom";
 
 const TodoDetail = ({}) => {

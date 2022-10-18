@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -31,6 +32,19 @@ export const __addTodos = createAsyncThunk(
   }
 );
 
+export const __delTodos = createAsyncThunk(
+  "delTodos",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.delete(`http://localhost:3001/todos/${payload}`);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
 export const todosSlice = createSlice({
   name: "todos",
   initialState,
@@ -60,8 +74,21 @@ export const todosSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    
+       [__delTodos.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__delTodos.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
+    [__delTodos.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
 export const {} = todosSlice.actions;
 export default todosSlice.reducer;
+

@@ -15,7 +15,7 @@ const TodoHomeComponent = () => {
       </Button>
       <Button
         onClick={() => {
-          Navigate("/todo_List");
+          Navigate("/todo_list");
         }}
       >
         Todo 리스트 보기

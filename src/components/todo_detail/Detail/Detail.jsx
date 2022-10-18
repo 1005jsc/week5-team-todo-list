@@ -9,7 +9,6 @@ import DetailHeader from "../DetailHeader/DetailHeader";
 
 const Detail = ({}) => {
   let params = useParams();
-
   const dispatch = useDispatch();
   const { isLoading, error, todos } = useSelector((state) => state.todos);
   const getSelectedTodo = (id) => {

@@ -24,13 +24,15 @@ const TodoList = () => {
     <Flex fd="column">
       <h1>내 할일</h1>
       {todos.map((todo) => (
-        <Box
-          key={todo.id}
-          onClick={() => {
-            Navigate(`/todo_detail/${todo.id}`);
-          }}
-        >
-          <P mg="10px 0 0 0">{todo.title}</P>
+        <Box key={todo.id}>
+          <P
+            mg="10px 0 0 0"
+            onClick={() => {
+              Navigate(`/todo_detail/${todo.id}`);
+            }}
+          >
+            {todo.title}
+          </P>
           <P fs="10">작성자 : {todo.user}</P>
           <Button onClick={() => dispatch(__delTodos(todo.id))}>
             삭제하기

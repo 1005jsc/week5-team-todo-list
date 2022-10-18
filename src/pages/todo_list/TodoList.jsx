@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Flex, P } from "../../common";
-import { __getTodos } from "../../redux/modules/getTodosSlice";
+import { Box, Flex, P, Button } from "../../common";
+import { __delTodos, __getTodos } from "../../redux/modules/getTodosSlice";
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,9 @@ const TodoList = () => {
         <Box key={todo.id}>
           <P mg="10px 0 0 0">{todo.title}</P>
           <P fs="10">작성자 : {todo.name}</P>
+          <Button onClick={() => dispatch(__delTodos(todo.id))}>
+            삭제하기
+          </Button>
         </Box>
       ))}
     </Flex>

@@ -24,7 +24,7 @@ const TodoList = () => {
       {todos.map((todo) => (
         <Box key={todo.id}>
           <P mg="10px 0 0 0">{todo.title}</P>
-          <P fs="10">작성자 : {todo.name}</P>
+          <P fs="10">작성자 : {todo.user}</P>
           <Button onClick={() => dispatch(__delTodos(todo.id))}>
             삭제하기
           </Button>

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Flex, P, Button } from "../../common";
-import { __delTodos, __getTodos } from "../../redux/modules/getTodosSlice";
+import { __delTodos, __getTodos } from "../../redux/modules/todosSlice";
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const { isLoading, error, todos } = useSelector((state) => state.getTodos);
+  const { isLoading, error, todos } = useSelector((state) => state.todos);
 
   useEffect(() => {
     dispatch(__getTodos());

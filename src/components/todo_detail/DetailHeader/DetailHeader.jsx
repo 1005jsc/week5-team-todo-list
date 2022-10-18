@@ -1,11 +1,12 @@
 import React from "react";
+
 import styled from "styled-components";
 
-const DetailHeader = ({}) => {
+const DetailHeader = ({ todo }) => {
   return (
     <>
       <HeaderDiv>
-        <IdSpan>id: (2)</IdSpan>
+        <IdSpan>id: {todo ? todo.id : ""}</IdSpan>
         <GoBack>이전으로</GoBack>
       </HeaderDiv>
     </>

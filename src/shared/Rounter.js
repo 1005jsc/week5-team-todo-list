@@ -10,8 +10,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<TodoForm />} />
         <Route path="/todo_detail" element={<TodoDetail />}>
-          <Route path="" element={<Detail />} />
-          <Route path="todo_fix" element={<DetailFix />} />
+          <Route path=":id" element={<Detail />} />
+          <Route path="todo_fix/:id" element={<DetailFix />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -18,6 +18,8 @@ const Comments = ({}) => {
 
         <CommentsLists>
           <Comment />
+          <Comment />
+          <Comment />
         </CommentsLists>
       </CommentsDiv>
     </>

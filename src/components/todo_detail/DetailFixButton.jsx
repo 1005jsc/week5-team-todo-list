@@ -1,14 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../../common/button/Button.styles";
 
-const DetailFixButton = ({}) => {
+const DetailFixButton = ({ id }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
-    navigate(`todo_fix`);
+    navigate(`/todo_detail/todo_fix/${id}`);
   };
 
   return (

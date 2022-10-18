@@ -19,6 +19,21 @@ export const __getTodos = createAsyncThunk(
   }
 );
 
+export const __fixTodo = createAsyncThunk(
+  "fixTodo",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.patch(
+        `http://localhost:3001/todos/${payload.id}`,
+        { desc: payload.desc }
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const __addTodos = createAsyncThunk(
   "addTodos",
   async (payload, thunkAPI) => {
@@ -57,6 +72,19 @@ export const todosSlice = createSlice({
       state.todos.push(action.payload);
     },
     [__addTodos.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    // Particular Todo Fix
+    [__fixTodo.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__fixTodo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todos.push(action.payload);
+    },
+    [__fixTodo.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

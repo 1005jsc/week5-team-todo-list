@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -19,6 +20,18 @@ export const __getTodos = createAsyncThunk(
   }
 );
 
+export const __addTodos = createAsyncThunk(
+  "addTodos",
+  async (payload, thunkAPI) => {
+    try {
+      axios.post("http://localhost:3001/todos", payload);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const __delTodos = createAsyncThunk(
   "delTodos",
   async (payload, thunkAPI) => {
@@ -31,11 +44,13 @@ export const __delTodos = createAsyncThunk(
   }
 );
 
-export const todoSlice = createSlice({
+
+export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {},
   extraReducers: {
+    // Todo List Get
     [__getTodos.pending]: (state) => {
       state.isLoading = true;
     },
@@ -47,7 +62,20 @@ export const todoSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    [__delTodos.pending]: (state) => {
+    // Todo List Add
+    [__addTodos.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__addTodos.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.todos.push(action.payload);
+    },
+    [__addTodos.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    
+       [__delTodos.pending]: (state) => {
       state.isLoading = true;
     },
     [__delTodos.fulfilled]: (state, action) => {
@@ -61,5 +89,6 @@ export const todoSlice = createSlice({
   },
 });
 
-export const {} = todoSlice.actions;
-export default todoSlice.reducer;
+export const {} = todosSlice.actions;
+export default todosSlice.reducer;
+

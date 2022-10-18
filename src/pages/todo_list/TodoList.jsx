@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Flex, P, Button } from "../../common";
-import { __delTodos, __getTodos } from "../../redux/modules/todosSlice";
+import { __delTodos, __getTodos } from "../../redux/modules/todoSlice";
 
 const TodoList = () => {
   const dispatch = useDispatch();

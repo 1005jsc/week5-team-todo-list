@@ -70,9 +70,9 @@ const ListContainer = styled.div`
 `;
 
 const TodoTitle = styled.h1`
-  width: 80%;
+  width: 30%;
   background-color: #b7cee8;
-  color: white;
+  color: #263238;
   border-radius: 10px;
   display: block;
   text-align: center;

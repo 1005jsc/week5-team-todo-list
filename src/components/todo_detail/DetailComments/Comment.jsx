@@ -14,16 +14,18 @@ const Comment = ({ comment, handleCommentFocus, focusedId }) => {
 
   const [commentChange, setCommentChange] = useState(comment.desc);
 
+  let yes = useRef();
+
   const handleButton1 = (e) => {
     e.preventDefault();
     if (!focusedId) {
+      yes.current = commentChange;
+
       handleCommentFocus(comment.id);
     } else {
       if (focusedId === comment.id) {
-        console.log("취소");
+        setCommentChange(yes.current);
         handleCommentFocus(undefined);
-      } else {
-        console.log("1 아무것도 안함");
       }
     }
   };

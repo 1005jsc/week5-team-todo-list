@@ -7,4 +7,6 @@ export const Flex = styled.div`
   align-items: ${({ ai }) => (ai ? ai : "flex-start")};
   height: ${({ height }) => (height ? height : "")};
   width: ${({ width }) => (width ? width : "")};
+  flex-wrap: ${({ fr }) => (fr ? fr : "")};
+  margin: ${({ mg }) => (mg ? mg : "")};
 `;

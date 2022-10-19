@@ -9,13 +9,14 @@ const DetailHeader = ({ todo }) => {
   return (
     <>
       <HeaderDiv>
-        <IdSpan>id: {todo ? todo.id : ""}</IdSpan>
+        <TitleSpan>NOTE</TitleSpan>
+
         <GoBack
           onClick={() => {
             navigate("/todo_list");
           }}
         >
-          이전으로
+          Go Back
         </GoBack>
       </HeaderDiv>
     </>
@@ -28,14 +29,25 @@ const HeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin-top: 30px;
 `;
 
-const IdSpan = styled.span`
-  font-size: 20px;
+const TitleSpan = styled.span`
+  color: ${(props) => {
+    return props.theme.BLUE_4;
+  }};
+
+  font-size: 36px;
 `;
 
 const GoBack = styled.button`
   background-color: transparent;
+  color: ${(props) => {
+    return props.theme.BLUE_4;
+  }};
+
+  font-size: 36px;
   &:hover {
     cursor: pointer;
   }

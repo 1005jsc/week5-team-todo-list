@@ -54,7 +54,7 @@ const Comments = ({}) => {
   return (
     <>
       <CommentsDiv>
-        <TitleSpan>눌러서 댓글내리기</TitleSpan>
+        <TitleSpan>댓글</TitleSpan>
         <CommentsForm
           onSubmit={(e) => {
             e.preventDefault();
@@ -115,24 +115,41 @@ const Comments = ({}) => {
 export default Comments;
 
 const CommentsDiv = styled.div`
-  width: 100%;
-  border: 1px solid grey;
+  width: 96%;
+  min-height: 200px;
+  margin: auto;
+  margin-top: 80px;
+
+  border: 1px solid ${(props) => props.theme.GREY};
+  padding: 60px 100px;
+  background-color: ${(props) => props.theme.BLUE_1};
+  border-radius: 12px;
 `;
 
-const TitleSpan = styled.span``;
+const TitleSpan = styled.span`
+  ${(props) => props.theme.BLUE_4};
+  font-size: 32px;
+  font-weight: 600;
+  color: ${(props) => props.theme.BLUE_4};
+`;
 
 const CommentsForm = styled.form`
   display: flex;
   align-items: center;
 
   width: 100%;
-  height: 30px;
+  height: 60px;
   margin: 30px 0;
 `;
 
 const Input = styled.input`
   flex: 1;
-  margin: 20px;
+  margin: 0 10px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid ${(props) => props.theme.LIGHT_GREY};
+  font-size: 14px;
+  padding-left: 10px;
 `;
 
 const InputComments = styled(Input)`
@@ -141,6 +158,12 @@ const InputComments = styled(Input)`
 
 const FormButton = styled.button`
   flex: 1;
+  margin-left: 30px;
+  max-width: 100px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 7px;
+  color: ${(props) => props.theme.BLUE_4};
 `;
 
 const CommentsLists = styled.div``;

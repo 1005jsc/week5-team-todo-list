@@ -11,7 +11,7 @@ const TodoDetail = ({}) => {
 export default TodoDetail;
 
 const LayoutDiv = styled.div`
-  padding-right: 20px;
-  padding-left: 20px;
-  border: 1px solid black;
+  padding-right: 40px;
+  position: relative;
+  padding-left: 40px;
 `;

@@ -12,7 +12,7 @@ const TodoList = () => {
   const dispatch = useDispatch();
   const { isLoading, error, todos } = useSelector((state) => state.todos);
   const { comments } = useSelector((state) => state.comments);
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(__getTodos());

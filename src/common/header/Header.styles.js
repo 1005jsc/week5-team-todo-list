@@ -9,4 +9,6 @@ export const Header = styled.div`
   padding: ${({ pd }) => (pd ? pd : "")}px;
   margin: ${({ mg }) => (mg ? mg : "")}px;
   color: ${({ color }) => (color ? color : "")};
+  display: ${({ dp }) => (dp ? dp : "")};
+  justify-content: ${({ jc }) => (jc ? jc : "")};
 `;

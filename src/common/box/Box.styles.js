@@ -12,6 +12,8 @@ export const Box = styled.div`
   overflow: ${({ overflow }) => (overflow ? overflow : "")};
   box-shadow: ${({ bs }) => (bs ? bs : "")};
   transition: ${({ tf }) => (tf ? "transform 3000ms" : "")};
+  border: ${({ border }) => (border ? border : "")};
+  background-image: url(${({ bgimg }) => (bgimg ? bgimg : "")});
   /* hover */
   &:hover {
     transform: ${({ tf }) => (tf ? tf : "")};

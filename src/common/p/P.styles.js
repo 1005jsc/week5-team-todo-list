@@ -14,4 +14,5 @@ export const P = styled.p`
   letter-spacing: ${({ ls }) => (ls ? ls : "")}em;
   line-height: ${({ lh }) => (lh ? lh : "18px")};
   color: ${({ color }) => (color ? color : "")};
+  font-weight: ${({ fw }) => (fw ? fw : "")};
 `;

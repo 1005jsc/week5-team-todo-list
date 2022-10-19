@@ -45,7 +45,7 @@ const TodoList = () => {
         mg="0 auto"
       >
         {todos.map((todo) => (
-          <TodoCard>
+          <TodoCard key={todo.id}>
             <Box
               mg="13"
               onClick={() => {

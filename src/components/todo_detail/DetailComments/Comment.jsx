@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { __delComment } from "../../../redux/modules/commentsSlice";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, handleCommentFocus, focusedId }) => {
   const dispatch = useDispatch();
+
+  const handleToggle = () => {
+    if (!focusedId) {
+      handleCommentFocus(comment.id);
+    } else {
+      if (focusedId === comment.id) {
+        console.log("취소");
+        handleCommentFocus(undefined);
+      } else {
+        console.log("1 아무것도 안함");
+      }
+    }
+  };
+
+  const handleDelete = () => {
+    if (!focusedId) {
+      dispatch(__delComment(comment.id));
+    } else {
+      if (focusedId === comment.id) {
+        console.log("저장");
+      } else {
+        console.log("2 아무것도 안함");
+      }
+    }
+  };
+  // console.log("comment.jsx");
+  console.log(comment);
+
   return (
     <>
       <CommentDiv>
@@ -13,14 +41,29 @@ const Comment = ({ comment }) => {
         <CommentSpan>{comment.desc}</CommentSpan>
 
         <ButtonsDiv>
-          <Buttons>수정</Buttons>
           <Buttons
-            onClick={() => {
-              console.log("hi");
-              dispatch(__delComment(comment.id));
-            }}
+            color={
+              focusedId
+                ? focusedId === comment.id
+                  ? "orange"
+                  : "#ebe8e8"
+                : "orange"
+            }
+            onClick={handleToggle}
           >
-            삭제
+            {focusedId === comment.id ? "취소" : "수정"}
+          </Buttons>
+          <Buttons
+            color={
+              focusedId
+                ? focusedId === comment.id
+                  ? "orange"
+                  : "#ebe8e8"
+                : "orange"
+            }
+            onClick={handleDelete}
+          >
+            {focusedId === comment.id ? "저장" : "삭제"}
           </Buttons>
         </ButtonsDiv>
       </CommentDiv>
@@ -45,8 +88,11 @@ const NameSpan = styled.span`
   position: absolute;
   font-size: 9px;
   top: 10px;
+  background-color: grey;
 `;
 const CommentSpan = styled.span``;
 
 const ButtonsDiv = styled.div``;
-const Buttons = styled.button``;
+const Buttons = styled.button`
+  background-color: ${(props) => props.color};
+`;

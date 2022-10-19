@@ -23,13 +23,21 @@ const Comments = ({}) => {
     desc: "",
   });
 
+  const [focusedId, setFocusedId] = useState(undefined);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(__addComment({ todoId: params.id, ...comment }));
-    setComment({
-      name: "",
-      desc: "",
-    });
+
+    if (!focusedId) {
+      console.log(focusedId);
+      dispatch(__addComment({ todoId: params.id, ...comment }));
+      setComment({
+        name: "",
+        desc: "",
+      });
+    } else {
+      console.log("지금은 안돼용");
+    }
   };
 
   if (isLoading) {
@@ -39,6 +47,12 @@ const Comments = ({}) => {
   if (error) {
     return <div>{error.message}</div>;
   }
+
+  const handleCommentFocus = (id) => {
+    setFocusedId(id);
+  };
+
+  // console.log("comments.jsx");
 
   return (
     <>
@@ -76,7 +90,14 @@ const Comments = ({}) => {
           {comments &&
             !isLoading &&
             comments.map((val, index) => {
-              return <Comment key={index} comment={val} />;
+              return (
+                <Comment
+                  key={index}
+                  comment={val}
+                  focusedId={focusedId}
+                  handleCommentFocus={handleCommentFocus}
+                />
+              );
             })}
         </CommentsLists>
       </CommentsDiv>

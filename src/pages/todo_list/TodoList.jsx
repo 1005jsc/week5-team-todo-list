@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Flex, P, Button } from "../../common";
+import { Box, Flex, P, Button, Heading } from "../../common";
 import { __delTodos, __getTodos } from "../../redux/modules/todoSlice";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -21,26 +22,50 @@ const TodoList = () => {
   }
 
   return (
-    <Flex fd="column">
-      <h1>내 할일</h1>
-      {todos.map((todo) => (
-        <Box key={todo.id}>
-          <P
-            mg="10px 0 0 0"
-            onClick={() => {
-              Navigate(`/todo_detail/${todo.id}`);
-            }}
+    <ListContainer>
+      <Heading ta="center" mg="10">
+        Todo List
+      </Heading>
+      <Flex
+        width="1000px"
+        height="auto"
+        fr="wrap"
+        jc="space-between"
+        mg="0 auto"
+      >
+        {todos.map((todo) => (
+          <Box
+            key={todo.id}
+            bgimg="../../images/bg2"
+            width="475px"
+            height="200px"
+            border="solid 1px silver"
+            br="10"
+            mg="10px 5px 15px 20"
           >
-            {todo.title}
-          </P>
-          <P fs="10">작성자 : {todo.user}</P>
-          <Button onClick={() => dispatch(__delTodos(todo.id))}>
-            삭제하기
-          </Button>
-        </Box>
-      ))}
-    </Flex>
+            <P
+              mg="10px 0 0 0"
+              onClick={() => {
+                Navigate(`/todo_detail/${todo.id}`);
+              }}
+            >
+              {todo.title}
+            </P>
+            <P fs="10">작성자 : {todo.user}</P>
+            <Button onClick={() => dispatch(__delTodos(todo.id))}>
+              삭제하기
+            </Button>
+          </Box>
+        ))}
+      </Flex>
+    </ListContainer>
   );
 };
+
+const ListContainer = styled.div`
+  width: 100%;
+  height: auto;
+  background-image: url("../../images/bg1.jpg");
+`;
 
 export default TodoList;

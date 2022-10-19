@@ -18,6 +18,8 @@ const Comments = ({}) => {
     dispatch(__getComments());
   }, [dispatch]);
 
+  const commentsWithId = comments.filter((val) => val.todoId === params.id);
+
   const [comment, setComment] = useState({
     name: "",
     desc: "",
@@ -25,12 +27,9 @@ const Comments = ({}) => {
 
   const [focusedId, setFocusedId] = useState(undefined);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     if (!focusedId) {
-      console.log(focusedId);
-      dispatch(__addComment({ todoId: params.id, ...comment }));
+      dispatch(__addComment({ id: Date.now(), todoId: params.id, ...comment }));
       setComment({
         name: "",
         desc: "",
@@ -52,13 +51,15 @@ const Comments = ({}) => {
     setFocusedId(id);
   };
 
-  // console.log("comments.jsx");
-
   return (
     <>
       <CommentsDiv>
         <TitleSpan>눌러서 댓글내리기</TitleSpan>
-        <CommentsForm onSubmit={handleSubmit}>
+        <CommentsForm
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <Input
             type="text"
             name="name"
@@ -83,13 +84,20 @@ const Comments = ({}) => {
             }
             placeholder="댓글을 추가하세요. (100자 이내)"
           />
-          <FormButton>추가하기</FormButton>
+          <FormButton
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
+            추가하기
+          </FormButton>
         </CommentsForm>
 
         <CommentsLists>
-          {comments &&
+          {commentsWithId &&
             !isLoading &&
-            comments.map((val, index) => {
+            commentsWithId.map((val, index) => {
               return (
                 <Comment
                   key={index}

@@ -44,6 +44,34 @@ export const __delComment = createAsyncThunk(
   }
 );
 
+export const __fixComment = createAsyncThunk(
+  "fixComment",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.patch(
+        `http://localhost:3001/comments/${payload.id}`,
+        { desc: payload.desc }
+      );
+
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+const fixCommentFulfilledMethod = (payload, comments) => {
+  const newComments = comments.map((comment) => {
+    if (comment.id === payload.id) {
+      return { ...comment, desc: payload.desc };
+    } else {
+      return comment;
+    }
+  });
+
+  return newComments;
+};
+
 export const commentsSlice = createSlice({
   name: "comments",
   initialState,
@@ -85,6 +113,22 @@ export const commentsSlice = createSlice({
       );
     },
     [__delComment.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    // Fix Comment
+    [__fixComment.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__fixComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.comments = fixCommentFulfilledMethod(
+        action.payload,
+        state.comments
+      );
+    },
+    [__fixComment.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import PendingIcon from "@mui/icons-material/Pending";
+import { __delComment } from "../../redux/modules/commentsSlice";
 
 const TodoList = () => {
   const dispatch = useDispatch();
   const { isLoading, error, todos } = useSelector((state) => state.todos);
-  const Navigate = useNavigate();
+  const { comments } = useSelector((state) => state.comments);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(__getTodos());
@@ -22,6 +24,14 @@ const TodoList = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
+
+  const handleCommentsDelete = (id) => {
+    const yes = comments.filter((val) => val.todoId !== id);
+
+    yes.forEach((val) => {
+      dispatch(__delComment(val.id));
+    });
+  };
 
   return (
     <ListContainer>

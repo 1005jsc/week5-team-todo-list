@@ -1,13 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
 const DetailHeader = ({ todo }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <HeaderDiv>
         <IdSpan>id: {todo ? todo.id : ""}</IdSpan>
-        <GoBack>이전으로</GoBack>
+        <GoBack
+          onClick={() => {
+            navigate("/todo_list");
+          }}
+        >
+          이전으로
+        </GoBack>
       </HeaderDiv>
     </>
   );

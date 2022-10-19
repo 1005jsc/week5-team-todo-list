@@ -9,20 +9,21 @@ import DetailHeader from "../DetailHeader/DetailHeader";
 
 const Detail = ({}) => {
   let params = useParams();
-
   const dispatch = useDispatch();
   const { isLoading, error, todos } = useSelector((state) => state.todos);
   const getSelectedTodo = (id) => {
     return todos.find((todo) => todo.id === parseInt(id));
   };
 
-  const todo = getSelectedTodo(params.id);
-
-  // const [todo, setTodo] = useState(todoYes); -> 왜 state로 하면 undefined가 뜰까요? 매니저님??
+  const [todo, setTodo] = useState();
 
   useEffect(() => {
     dispatch(__getTodos());
   }, [dispatch]);
+
+  useEffect(() => {
+    setTodo(getSelectedTodo(params.id));
+  }, [todos]);
 
   if (isLoading) {
     return <div>로딩 중....</div>;

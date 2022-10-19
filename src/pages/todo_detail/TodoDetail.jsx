@@ -12,6 +12,7 @@ export default TodoDetail;
 
 const LayoutDiv = styled.div`
   padding-right: 40px;
+  width: 100%;
   position: relative;
   padding-left: 40px;
 `;

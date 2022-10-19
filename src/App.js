@@ -4,15 +4,18 @@ import Router from "./shared/Rounter";
 
 function App() {
   return (
-    <Container>
-      <Router />
-    </Container>
+    <>
+      <Container>
+        <Router />
+      </Container>
+    </>
   );
 }
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 `;

@@ -12,14 +12,20 @@ const DetailFixButton = ({ id }) => {
 
   return (
     <>
-      <FixButton onClick={handleClick}>수정</FixButton>
+      <FixButton onClick={handleClick}>내용 수정</FixButton>
     </>
   );
 };
 export default DetailFixButton;
 
 const FixButton = styled.button`
-  font-size: 14px;
-  width: 90%;
+  position: relative;
+  right: -87%;
+  font-size: 16px;
+  width: 120px;
+  height: 40px;
   margin: 30px;
+
+  border-radius: 10px;
+  background-color: ${(props) => props.theme.LIGHT_GREY}; ;
 `;

@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import TodoHome from "../pages/todo_home/TodoHome";
 import TodoList from "../pages/todo_list/TodoList";
 import TodoNavbar from "../components/todo_nav/TodoNavbar";
-
 import TodoForm from "../components/todo_form/TodoForm";
 import TodoDetail from "../pages/todo_detail/TodoDetail";
 import Detail from "../components/todo_detail/Detail/Detail";

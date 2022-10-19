@@ -51,6 +51,7 @@ export const __fixTodo = createAsyncThunk(
         `http://localhost:3001/todos/${payload.id}`,
         { desc: payload.desc }
       );
+
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

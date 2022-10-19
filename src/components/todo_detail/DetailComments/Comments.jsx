@@ -1,25 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import {
+  __addComment,
+  __getComments,
+} from "../../../redux/modules/commentsSlice";
 import Comment from "./Comment";
 
 const Comments = ({}) => {
+  let params = useParams();
+  const { isLoading, error, comments } = useSelector((state) => state.comments);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getComments());
+  }, [dispatch]);
+
+  const [comment, setComment] = useState({
+    name: "",
+    desc: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(__addComment({ todoId: params.id, ...comment }));
+    setComment({
+      name: "",
+      desc: "",
+    });
+  };
+
+  if (isLoading) {
+    return <div>로딩 중....</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
   return (
     <>
       <CommentsDiv>
         <TitleSpan>눌러서 댓글내리기</TitleSpan>
-        <CommentsForm>
-          <Input type="text" placeholder="이름 (5자 이내)" />
+        <CommentsForm onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="name"
+            onChange={(e) =>
+              setComment((prevState) => ({
+                ...prevState,
+                name: e.target.value,
+              }))
+            }
+            value={comment.name}
+            placeholder="이름 (5자 이내)"
+          />
           <InputComments
             type="text"
+            name="desc"
+            value={comment.desc}
+            onChange={(e) =>
+              setComment((prevState) => ({
+                ...prevState,
+                desc: e.target.value,
+              }))
+            }
             placeholder="댓글을 추가하세요. (100자 이내)"
           />
           <FormButton>추가하기</FormButton>
         </CommentsForm>
 
         <CommentsLists>
-          <Comment />
-          <Comment />
-          <Comment />
+          {comments &&
+            !isLoading &&
+            comments.map((val, index) => {
+              return <Comment key={index} comment={val} />;
+            })}
         </CommentsLists>
       </CommentsDiv>
     </>

@@ -1,17 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { __delComment } from "../../../redux/modules/commentsSlice";
 
-const Comment = ({}) => {
+const Comment = ({ comment }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <CommentDiv>
-        <NameSpan>sdf</NameSpan>
+        <NameSpan>{comment.name}</NameSpan>
 
-        <CommentSpan>안녕안녕나는 조재신이야</CommentSpan>
+        <CommentSpan>{comment.desc}</CommentSpan>
 
         <ButtonsDiv>
           <Buttons>수정</Buttons>
-          <Buttons>삭제</Buttons>
+          <Buttons
+            onClick={() => {
+              console.log("hi");
+              dispatch(__delComment(comment.id));
+            }}
+          >
+            삭제
+          </Buttons>
         </ButtonsDiv>
       </CommentDiv>
     </>

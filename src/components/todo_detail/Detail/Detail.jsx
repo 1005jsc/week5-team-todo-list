@@ -19,8 +19,6 @@ const Detail = ({}) => {
 
   const [todo, setTodo] = useState(); // -> 왜 state로 하면 undefined가 뜰까요? 매니저님??
 
-  console.log(todo);
-
   useEffect(() => {
     dispatch(__getTodos());
   }, [dispatch]);

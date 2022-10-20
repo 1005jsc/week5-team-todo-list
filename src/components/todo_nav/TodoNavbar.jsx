@@ -44,21 +44,21 @@ const TodoNavbar = () => {
 };
 
 const NavContainer = styled.div`
-  margin-left: 20px;
-  width: 15%;
-  height: 1000px;
+  margin-left: 25px;
+  min-width: 10%;
+  max-width: 20%;
+  height: 100vh;
 `;
 
 const Nav = styled.nav`
   background-color: #d8dbe2;
   display: flex;
-  /* border-radius: 10px; */
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  box-shadow: 0px 0px 5px 0px #4b636e;
+  box-shadow: 0px 0px 6px 0px #8f8f8f;
 `;
 
 const Menu = styled.div`
@@ -75,23 +75,28 @@ const MenuItem = styled.div`
   text-align: center;
   width: 100%;
   height: 80px;
-  font-size: 17px;
+  font-size: 19px;
+  letter-spacing: 0.03em;
   font-weight: 700;
+  color: #464646;
   padding: 25px 0 0 0;
+  margin-bottom: 10px;
   cursor: pointer;
   :hover {
     width: 110%;
+    padding: 25px 0 0 0;
+    margin-bottom: 10px;
     background-color: #b7cee8;
     color: white;
     text-align: center;
-    box-shadow: 0.5px 0.5px 0px 0.5px #b0bec5;
+    box-shadow: 0px 0px 6px 0px #afbbc1;
   }
 `;
 
 const Mark = styled.div`
   border-radius: 10px;
   border: solid 1px #d8dbe2;
-  margin: 30px;
+  margin: 40px;
 `;
 
 export default TodoNavbar;

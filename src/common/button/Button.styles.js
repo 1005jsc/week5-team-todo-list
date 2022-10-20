@@ -11,9 +11,14 @@ export const Button = styled.button`
   height: ${({ height }) => (height ? height : "")};
   border-radius: ${({ br }) => (br ? br : "")};
   padding: ${({ pd }) => (pd ? pd : "")}px;
+  letter-spacing: ${({ ls }) => (ls ? ls : "")}em;
   margin: ${({ mg }) => (mg ? mg : "")}px;
   color: ${({ color }) => (color ? color : "")};
   box-shadow: ${({ bs }) => (bs ? bs : "")};
+  font-size: ${({ fs }) => (fs ? fs : "")}px;
+  position: ${({ po }) => (po ? po : "static")};
+  bottom: ${({ bt }) => (bt ? bt : "")};
+  left: ${({ lf }) => (lf ? lf : "")};
   cursor: pointer;
   &:hover {
     opacity: 0.8;

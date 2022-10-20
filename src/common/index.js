@@ -8,5 +8,18 @@ import { default as Button } from "./button";
 import { default as Heading } from "./heading";
 import { default as P } from "./p";
 import { default as Form } from "./form";
+import { default as Textarea } from "./textarea";
 
-export { Layout, Header, Box, Flex, Input, Label, Button, Heading, P, Form };
+export {
+  Layout,
+  Header,
+  Box,
+  Flex,
+  Label,
+  Button,
+  Heading,
+  P,
+  Form,
+  Textarea,
+  Input,
+};

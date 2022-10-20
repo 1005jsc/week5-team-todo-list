@@ -34,49 +34,47 @@ const TodoList = () => {
   };
 
   return (
-    <ListContainer>
-      <TodoTitle>Todo List</TodoTitle>
-      <Flex
-        width="100%"
-        height="auto"
-        fr="wrap"
-        // jc="center"
-        ai="flex-start"
-        mg="0 auto"
-      >
-        {todos.map((todo) => (
-          <TodoCard key={todo.id}>
-            <Box
-              mg="13"
-              onClick={() => {
-                Navigate(`/todo_detail/${todo.id}`);
-              }}
-            >
-              <P mg="40" fs="25" fw="700" ta="center">
-                {todo.title}
-              </P>
-              <P fs="15" mg="30">
-                작성자 : {todo.user}
-              </P>
-            </Box>
-            <Button
-              br="10px"
-              mg="0 0 0 100px"
-              onClick={() => dispatch(__delTodos(todo.id))}
-            >
-              <DeleteRoundedIcon />
-            </Button>
-          </TodoCard>
-        ))}
-      </Flex>
-    </ListContainer>
+    <Flex width="100%" height="50vh" fd="column" jc="center" ai="center">
+      <Heading color=" #b7cee8" fs="45" ls="0.1">
+        MY TODO LIST
+      </Heading>
+      <ListContainer>
+        <Flex width="100%" jc="center" fr="wrap">
+          {todos.map((todo) => (
+            <TodoCard key={todo.id}>
+              <Box
+                onClick={() => {
+                  Navigate(`/todo_detail/${todo.id}`);
+                }}
+              >
+                <P mg="40" fs="25" fw="700" ta="center">
+                  {todo.title}
+                </P>
+                <P fs="19" mg="30" ta="center">
+                  작성자 : {todo.user}
+                </P>
+              </Box>
+              <Button
+                br="10px"
+                po="absolute"
+                width="75px"
+                pd="5"
+                bt="20px"
+                lf="40%"
+                onClick={() => dispatch(__delTodos(todo.id))}
+              >
+                <DeleteRoundedIcon />
+              </Button>
+            </TodoCard>
+          ))}
+        </Flex>
+      </ListContainer>
+    </Flex>
   );
 };
 
 const ListContainer = styled.div`
-  width: 80%;
-  height: auto;
-  align-self: flex-start;
+  width: 100%;
 `;
 
 const TodoTitle = styled.h1`
@@ -90,17 +88,16 @@ const TodoTitle = styled.h1`
 `;
 
 const TodoCard = styled.div`
-  width: 45%;
-  height: 200;
-  margin: 10px 0 10px 35px;
-  color: #263238;
+  position: relative;
+  width: 340px;
+  height: 220px;
+  margin: 15px;
+  color: #3d3d3d;
   border: solid 3px #b7cee8;
   border-radius: 10px;
-  box-shadow: 0px 1px 1px 0px #b0bec5;
   cursor: pointer;
   :hover {
-    color: black;
-    border: solid 3px #9cbbdf;
+    opacity: 0.8;
   }
 `;
 

@@ -11,7 +11,7 @@ export const __getComments = createAsyncThunk(
   "getComments",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/comments");
+      const data = await axios.get(process.env.REACT_APP_DB_HEROKU_COMMENTS);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -23,7 +23,7 @@ export const __addComment = createAsyncThunk(
   "addComment",
   async (payload, thunkAPI) => {
     try {
-      await axios.post(`http://localhost:3001/comments`, payload);
+      await axios.post(process.env.REACT_APP_DB_HEROKU_COMMENTS, payload);
 
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
@@ -36,7 +36,9 @@ export const __delComment = createAsyncThunk(
   "delComment",
   async (payload, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3001/comments/${payload}`);
+      await axios.delete(
+        `${process.env.REACT_APP_DB_HEROKU_COMMENTS}/${payload}`
+      );
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -49,7 +51,7 @@ export const __fixComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.patch(
-        `http://localhost:3001/comments/${payload.id}`,
+        `${process.env.REACT_APP_DB_HEROKU_COMMENTS}/${payload.id}`,
         { desc: payload.desc }
       );
 

@@ -17,6 +17,9 @@
 # db.json
 /db.json
 
+#env
+.env
+
 # misc
 .DS_Store
 .env.local

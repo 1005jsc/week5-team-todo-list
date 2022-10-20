@@ -11,7 +11,7 @@ export const __getTodos = createAsyncThunk(
   "getTodos",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/todos");
+      const data = await axios.get(process.env.REACT_APP_DB_HEROKU_TODOS);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -23,7 +23,7 @@ export const __addTodos = createAsyncThunk(
   "addTodos",
   async (payload, thunkAPI) => {
     try {
-      axios.post("http://localhost:3001/todos", payload);
+      axios.post(process.env.REACT_APP_DB_HEROKU_TODOS, payload);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -35,7 +35,7 @@ export const __delTodos = createAsyncThunk(
   "delTodos",
   async (payload, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3001/todos/${payload}`);
+      await axios.delete(`${process.env.REACT_APP_DB_HEROKU_TODOS}/${payload}`);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -48,7 +48,7 @@ export const __fixTodo = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.patch(
-        `http://localhost:3001/todos/${payload.id}`,
+        `${process.env.REACT_APP_DB_HEROKU_TODOS}/${payload.id}`,
         { desc: payload.desc }
       );
 

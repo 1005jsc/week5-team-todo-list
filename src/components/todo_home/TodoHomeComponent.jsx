@@ -9,7 +9,7 @@ const TodoHomeComponent = () => {
   const Navigate = useNavigate();
   return (
     <Flex width="100%" height="100vh" fd="column" jc="center" ai="center">
-      <Heading color=" #b7cee8" fs="45" ls="0.1" po="absolute" tp="170px">
+      <Heading color=" #b7cee8" fs="45" ls="0.1" po="reletive">
         MY TODO LIST
       </Heading>
       <HomeContainer>

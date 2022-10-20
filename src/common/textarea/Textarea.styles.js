@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Input = styled.input`
+export const Textarea = styled.textarea`
   display: block;
   outline: none;
   background-color: ${({ bg }) => (bg ? bg : "")};
@@ -12,4 +12,5 @@ export const Input = styled.input`
   margin: ${({ mg }) => (mg ? mg : "")}px;
   color: ${({ color }) => (color ? color : "")};
   font-size: ${({ fs }) => (fs ? fs : "")}px;
+  resize: none;
 `;

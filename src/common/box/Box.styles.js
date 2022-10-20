@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Box = styled.div`
   display: ${({ dp }) => (dp ? dp : "")};
   grid-template-columns: ${({ gtc }) => (gtc ? gtc : "")};
-  background-color: ${({ bg }) => (bg ? bg : "")};
+  background-color: ${({ bc }) => (bc ? bc : "")};
   height: ${({ height }) => (height ? height : "")};
   width: ${({ width }) => (width ? width : "")};
   border-radius: ${({ br }) => (br ? br : "")}px;

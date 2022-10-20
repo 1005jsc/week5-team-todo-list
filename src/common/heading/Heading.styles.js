@@ -12,6 +12,10 @@ export const Heading = styled.h1`
   font-size: ${({ fs }) => (fs ? fs : "")}px;
   text-align: ${({ ta }) => (ta ? ta : "")};
   letter-spacing: ${({ ls }) => (ls ? ls : "")}em;
+  position: ${({ po }) => (po ? po : "static")};
+  top: ${({ tp }) => (tp ? tp : "")};
+  bottom: ${({ bt }) => (bt ? bt : "")};
+  left: ${({ lf }) => (lf ? lf : "")};
   // 가상 요소를 props로 넘겨주고 싶다면?
   animation: ${({ Typing }) => (Typing ? Typing : "")} 2s steps(22),
     ${({ Blink }) => (Blink ? Blink : "")} 0.5s step-end infinite alternate;
